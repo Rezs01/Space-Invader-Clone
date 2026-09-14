@@ -38,5 +38,9 @@ public class Bullet : MonoBehaviour
             BulletsPool.Instance.ReleaseBullet(this);
             other.GetComponent<Player>().Explode();
         }
+        else if (other.CompareTag("Finish"))
+        {
+            BulletsPool.Instance.ReleaseBullet(this);
+        }   
     }
 }

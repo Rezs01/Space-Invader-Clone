@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip deathSFX;
     [SerializeField] float deathVolume;
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(ShootLoop());
     }

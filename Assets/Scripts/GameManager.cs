@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
         enemyClusters[level].gameObject.SetActive(true);
         enemyClusters[level].EnableAllEnemies();
+        enemyClusters[level].Reset();
         level++;
         level = Mathf.Clamp(level, 0, enemyClusters.Length - 1);
     }

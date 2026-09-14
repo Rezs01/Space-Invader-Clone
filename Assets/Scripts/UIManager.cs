@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+    public const string HIGHSCORE_KEY = "Highscore";
     [SerializeField] TMP_Text title, pressEnter, scoreText, gameOverText, endScore;
     [SerializeField] GameObject ships;
+    [SerializeField] AudioClip highscoreSFX;
 
-    float score;
+    float score, highscore;
     bool gameHasStarted = false;
     InputAction submit;
 
@@ -26,6 +28,7 @@ public class UIManager : MonoBehaviour
         }
 
         submit = InputSystem.actions.FindAction("Submit");
+        highscore = PlayerPrefs.GetFloat(HIGHSCORE_KEY, 0);
     }
 
     private void Update()
@@ -41,6 +44,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Reset Highscore")]
+    void ResetHighscore()
+    {
+        PlayerPrefs.DeleteKey(HIGHSCORE_KEY);
+        highscore = 0;
+    }
+
     public void AddScore(float score)
     {
         this.score += score;
@@ -54,8 +64,16 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         gameOverText.gameObject.SetActive(false);
-        endScore.text = $"SCORE\n{score}";
+
+        endScore.text = score > highscore ? $"NEW HIGHSCORE!\n{score}" : $"SCORE\n{score}";
         endScore.gameObject.SetActive(true);
+
+        if (score > highscore)
+        {
+            highscore = score;
+            PlayerPrefs.SetFloat(HIGHSCORE_KEY, highscore);
+            AudioManager.Instance.PlaySFX(highscoreSFX);
+        }
         yield return new WaitForSeconds(3f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

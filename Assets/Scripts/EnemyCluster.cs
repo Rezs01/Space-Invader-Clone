@@ -43,4 +43,8 @@ public class EnemyCluster : MonoBehaviour
             GameManager.Instance.SpawnEnemyCluster();
         }
     }
+    public void Reset()
+    {
+        defeatedEnemies = 0;
+    }
 }

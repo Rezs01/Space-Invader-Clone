@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip deathSFX;
     [SerializeField] float deathVolume;
 
+    [Header("Cheats")]
+    [SerializeField] bool forceField;
+
     InputAction moveAction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,6 +47,8 @@ public class Player : MonoBehaviour
 
     public void Explode()
     {
+        if (forceField) return;
+
         print("Exploding");
         AudioManager.Instance.PlaySFX(deathSFX, deathVolume);
         UIManager.Instance.GameOver();
