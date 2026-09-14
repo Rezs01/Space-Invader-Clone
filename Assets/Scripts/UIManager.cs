@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    [SerializeField] TMP_Text title, pressEnter, scoreText, gameOverText;
+    [SerializeField] TMP_Text title, pressEnter, scoreText, gameOverText, endScore;
     [SerializeField] GameObject ships;
 
     float score;
@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
             pressEnter.gameObject.SetActive(false);
             scoreText.gameObject.SetActive(true);
             ships.SetActive(true);
+            GameManager.Instance.SpawnEnemyCluster();
         }
     }
 
@@ -50,7 +51,13 @@ public class UIManager : MonoBehaviour
     IEnumerator GameOverRoutine()
     {
         gameOverText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
+        gameOverText.gameObject.SetActive(false);
+        endScore.text = $"SCORE\n{score}";
+        endScore.gameObject.SetActive(true);
         yield return new WaitForSeconds(3f);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

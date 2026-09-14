@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] EnemyCluster enemyCluster;
     [SerializeField] float shootChance;
     [SerializeField] float defeatScore;
     [SerializeField] Transform bulletSpawnLocation;
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator ShootLoop()
     {
+        yield return new WaitForSeconds(Random.value);
+
         while (true)
         {
             yield return new WaitForSeconds(1f);
@@ -29,9 +32,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void Explode()
     {
+        enemyCluster.EnemyDefeated();
         UIManager.Instance.AddScore(defeatScore);
         AudioManager.Instance.PlaySFX(deathSFX, deathVolume);
+        gameObject.SetActive(false);
     }
 }

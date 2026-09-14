@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             //print("Firing");
             Bullet bullet = BulletsPool.Instance.GetBullet();
             bullet.transform.SetPositionAndRotation(bulletSpawnLocation.position, new Quaternion(0, 0, 0, 1));

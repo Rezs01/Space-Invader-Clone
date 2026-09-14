@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy") && isPlayerBullet)
         {
             BulletsPool.Instance.ReleaseBullet(this);
-            Destroy(other.gameObject);
+            other.GetComponent<Enemy>().Explode();
         }
         else if (other.CompareTag("Player") && !isPlayerBullet)
         {

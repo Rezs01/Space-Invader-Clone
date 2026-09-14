@@ -5,9 +5,10 @@ public class EnemyCluster : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] float moveLimit;
+    [SerializeField] GameObject[] enemies;
 
     bool movingRight;
-    // Update is called once per frame
+    int defeatedEnemies = 0;
     void Update()
     {
         Move();
@@ -16,9 +17,6 @@ public class EnemyCluster : MonoBehaviour
     void Move()
     {
         //Moves the enemy cluster back and forth between the moveLimit
-        //transform.position += new Vector3(moveDirection, 0, 0) * moveSpeed * Time.deltaTime;
-        //if (transform.position.x >= moveLimit * moveDirection) moveDirection *= -1;
-
         if (movingRight)
         {
             transform.localPosition += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
@@ -28,6 +26,21 @@ public class EnemyCluster : MonoBehaviour
         {
             transform.localPosition -= new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
             if (transform.localPosition.x <= -moveLimit) movingRight = true;
+        }
+    }
+    public void EnableAllEnemies()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.SetActive(true);
+        }
+    }
+    public void EnemyDefeated()
+    {
+        defeatedEnemies++;
+        if (defeatedEnemies >= enemies.Length)
+        {
+            GameManager.Instance.SpawnEnemyCluster();
         }
     }
 }
