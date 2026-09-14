@@ -6,6 +6,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] Transform bulletSpawnLocation;
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField] float shootVolume;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] float deathVolume;
 
     InputAction moveAction;
 
@@ -33,6 +37,13 @@ public class Player : MonoBehaviour
             Bullet bullet = BulletsPool.Instance.GetBullet();
             bullet.transform.SetPositionAndRotation(bulletSpawnLocation.position, new Quaternion(0, 0, 0, 1));
             bullet.SetColor(true);
+
+            AudioManager.Instance.PlaySFX(shootSFX, shootVolume);
         }
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager.Instance.PlaySFX(deathSFX, deathVolume);
     }
 }

@@ -4,8 +4,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float shootChance;
+    [SerializeField] float defeatScore;
     [SerializeField] Transform bulletSpawnLocation;
-    
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] float deathVolume;
+
     private void Start()
     {
         StartCoroutine(ShootLoop());
@@ -26,4 +29,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        UIManager.Instance.AddScore(defeatScore);
+        AudioManager.Instance.PlaySFX(deathSFX, deathVolume);
+    }
 }

@@ -107,7 +107,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   shootChance: 90
+  defeatScore: 10
   bulletSpawnLocation: {fileID: 8531149712597857587}
+  deathSFX: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
+  deathVolume: 0.8
 --- !u!65 &4262598554904359493
 BoxCollider:
   m_ObjectHideFlags: 0
