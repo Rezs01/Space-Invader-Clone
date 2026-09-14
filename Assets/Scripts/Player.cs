@@ -42,8 +42,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void Explode()
     {
+        print("Exploding");
         AudioManager.Instance.PlaySFX(deathSFX, deathVolume);
+        UIManager.Instance.GameOver();
+        gameObject.SetActive(false);
     }
 }

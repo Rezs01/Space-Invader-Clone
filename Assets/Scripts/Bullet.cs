@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
         else if (other.CompareTag("Player") && !isPlayerBullet)
         {
             BulletsPool.Instance.ReleaseBullet(this);
-            Destroy(other.gameObject);
+            other.GetComponent<Player>().Explode();
         }
     }
 }
