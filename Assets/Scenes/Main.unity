@@ -16861,13 +16861,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740affc0749a4ed40bf80b7832dd79e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  moveSpeed: 10
   bulletSpawnLocation: {fileID: 351994773}
+  moveSpeed: 10
+  rotateSpeed: 200
+  shootInterval: 1
   shootSFX: {fileID: 8300000, guid: 881e3f52c86c94f26a60718d35627cd8, type: 3}
   shootVolume: 0.7
   deathSFX: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   deathVolume: 0.8
-  forceField: 1
+  forceField: 0
 --- !u!65 &692245931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19664,7 +19666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1489445065
 Transform:
   m_ObjectHideFlags: 0
@@ -21753,11 +21755,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.9771507
+      value: -2.0145416
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.056827545
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21769,15 +21771,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1c43257c3c2b67241adbe1cb13eb5305, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
